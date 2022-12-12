@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root "pages#index"
 
   # session
-  scope :in9foo7N do
+  scope ENV.fetch("SESSION_SCOPE") do
     get "login", to: "session#new", as: :login
     post "login", to: "session#create"
     get "logout", to: "session#destroy", as: :logout

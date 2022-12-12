@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   root "pages#index"
 
   # session
-  get "login", to: "session#new", as: :login
-  post "login", to: "session#create"
-  get "logout", to: "session#destroy", as: :logout
+  scope :in9foo7N do
+    get "login", to: "session#new", as: :login
+    post "login", to: "session#create"
+    get "logout", to: "session#destroy", as: :logout
+  end
 
   # blog posts
   scope :blog, as: :blog do

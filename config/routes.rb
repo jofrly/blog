@@ -8,6 +8,6 @@ Rails.application.routes.draw do
 
   # blog posts
   scope :blog, as: :blog do
-    resources :posts, only: [:index]
+    resources :posts, only: [:index, :new, :create, :show]
   end
 end

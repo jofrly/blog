@@ -6,13 +6,13 @@ RSpec.describe User do
       create(:user, username: "admin")
       second_user = build(:user, username: "admin")
       expect(second_user.valid?).to be_falsey
-      expect(second_user.errors.full_messages.first).to eq("Username has already been taken")
+      expect(second_user.errors.full_messages.first).to eq("Benutzername ist bereits vergeben")
     end
 
     it "is required" do
-      second_user = build(:user, username: nil)
-      expect(second_user.valid?).to be_falsey
-      expect(second_user.errors.full_messages.first).to eq("Username can't be blank")
+      user = build(:user, username: nil)
+      expect(user.valid?).to be_falsey
+      expect(user.errors.full_messages.first).to eq("Benutzername muss ausgefüllt werden")
     end
   end
 

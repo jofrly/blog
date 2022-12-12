@@ -3,20 +3,20 @@ class SessionController < ApplicationController
   end
 
   def create
-    @user = User.find_by("lower(username) = ?", session_params[:username].downcase)
+    @user = User.with_username(session_params[:username])
 
     if @user&.authenticate(session_params[:password])
       session[:user_id] = @user.id
 
       redirect_to root_path
     else
-      @error = "Ungültiger Benutzername oder Passwort!"
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity, locals: { error: true }
     end
   end
 
   def destroy
     session[:user_id] = nil
+
     redirect_to root_path
   end
 

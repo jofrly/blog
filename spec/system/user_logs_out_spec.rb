@@ -6,7 +6,7 @@ RSpec.describe "User logs out", type: :system do
   end
 
   it "successfully" do
-    User.create(username: "admin", password: "secretpassword")
+    create(:user, username: "admin", password: "secretpassword")
     login_as(username: "admin", password: "secretpassword")
 
     visit logout_path

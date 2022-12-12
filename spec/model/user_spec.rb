@@ -8,6 +8,12 @@ RSpec.describe User do
       expect(second_user.valid?).to be_falsey
       expect(second_user.errors.full_messages.first).to eq("Username has already been taken")
     end
+
+    it "is required" do
+      second_user = build(:user, username: nil)
+      expect(second_user.valid?).to be_falsey
+      expect(second_user.errors.full_messages.first).to eq("Username can't be blank")
+    end
   end
 
   context ".with_username" do

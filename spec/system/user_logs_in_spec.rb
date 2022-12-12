@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "User logs ins" do
+RSpec.describe "User logs in" do
   before do
     driven_by(:rack_test)
   end

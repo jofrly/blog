@@ -1,0 +1,9 @@
+<%= form_with scope: :session, url: login_path do |f| %>
+  <%= f.label :username, "Benutzername" %>
+  <%= f.text_field :username %>
+
+  <%= f.label :password, "Passwort" %>
+  <%= f.text_field :password %>
+
+  <%= f.submit "Anmelden" %>
+<% end %>

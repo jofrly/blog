@@ -15,4 +15,13 @@ RSpec.describe "Guest can see blog posts" do
     expect(page).to have_text "Second post"
     expect(page).to have_text "This is the content of the second post."
   end
+
+  it "individually" do
+    post = create(:post, title: "First post", content: "This is the content of the fist post.")
+
+    visit blog_post_path(post)
+
+    expect(page).to have_text "First post"
+    expect(page).to have_text "This is the content of the fist post."
+  end
 end

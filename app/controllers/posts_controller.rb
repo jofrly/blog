@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :require_login, except: :index
+  before_action :require_login, except: [:index, :show]
 
   def index
     @posts = Post.all

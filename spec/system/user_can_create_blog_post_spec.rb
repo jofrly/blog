@@ -2,20 +2,19 @@ require 'rails_helper'
 
 RSpec.describe "User can create blog post" do
   before do
-    driven_by(:rack_test)
+    driven_by(:selenium_headless)
   end
 
   it "successfully" do
     create_user_and_login
     visit new_blog_post_path
     fill_in "Titel", with: "Post title"
-    fill_in "Inhalt", with: "Post body"
-    # TODO: check for trix editor
+    find('trix-editor').click.set("Post content")
     click_on "Erstellen"
     expect(Post.first).to_not be_nil
     expect(current_path).to eq(blog_post_path(Post.first))
     expect(page).to have_text("Post title")
-    expect(page).to have_text("Post body")
+    expect(page).to have_text("Post content")
   end
 
   it "unsuccessfully" do

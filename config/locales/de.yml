@@ -5,7 +5,7 @@ de:
         username: Benutzername
       post:
         title: Titel
-        body: Inhalt
+        content: Inhalt
     errors:
       messages:
         record_invalid: 'Gültigkeitsprüfung ist fehlgeschlagen: %{errors}'

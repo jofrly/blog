@@ -6,13 +6,13 @@ RSpec.describe "Guest can see blog posts" do
   end
 
   it "as a list" do
-    create(:post, title: "First post", body: "This is the body of the fist post.")
-    create(:post, title: "Second post", body: "This is the body of the second post.")
+    create(:post, title: "First post", content: "This is the content of the fist post.")
+    create(:post, title: "Second post", content: "This is the content of the second post.")
 
     visit blog_posts_path
     expect(page).to have_text "First post"
-    expect(page).to have_text "This is the body of the fist post."
+    expect(page).to have_text "This is the content of the fist post."
     expect(page).to have_text "Second post"
-    expect(page).to have_text "This is the body of the second post."
+    expect(page).to have_text "This is the content of the second post."
   end
 end

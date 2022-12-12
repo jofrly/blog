@@ -9,6 +9,6 @@ FactoryBot.define do
   factory :post do
     user
     title { "title" }
-    body { "body" }
+    content { "content" }
   end
 end

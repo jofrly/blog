@@ -9,9 +9,9 @@ RSpec.describe Post do
     end
   end
 
-  context "body" do
+  context "content" do
     it "is required" do
-      post = build(:post, body: nil)
+      post = build(:post, content: nil)
       expect(post.valid?).to be_falsey
       expect(post.errors.full_messages.first).to eq("Inhalt muss ausgefüllt werden")
     end

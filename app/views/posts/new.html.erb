@@ -1,15 +1,1 @@
-<% if @post.errors.any? %>
-  <% @post.errors.full_messages.each do |error| %>
-    <div><%= error %></div>
-  <% end %>
-<% end %>
-
-<%= form_with model: [:blog, @post] do |f| %>
-  <%= f.label :title, "Titel" %>
-  <%= f.text_field :title %>
-
-  <%= f.label :content, "Inhalt" %>
-  <%= f.rich_text_area :content %>
-
-  <%= f.submit "Erstellen" %>
-<% end %>
+<%= render "posts/form", post: @post, submit_label: "Erstellen" %>

@@ -9,7 +9,7 @@ RSpec.describe "User can create blog post" do
     create_user_and_login
     visit new_blog_post_path
     fill_in "Titel", with: "Post title"
-    find('trix-editor').click.set("Post content")
+    fill_in_trix_editor "Post content"
     click_on "Erstellen"
     expect(Post.first).to_not be_nil
     expect(current_path).to eq(blog_post_path(Post.first))

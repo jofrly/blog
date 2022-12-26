@@ -7,7 +7,7 @@ RSpec.describe "User can update blog post" do
 
   it "successfully" do
     create_user_and_login
-    post = create(:post, title: "First post", content: "This is the content of the fist post.")
+    post = create(:post, title: "First post", content: "This is the content of the first post.")
     visit edit_blog_post_path(post)
     fill_in "Titel", with: "Updated title"
     fill_in_trix_editor "Updated content"
@@ -19,7 +19,7 @@ RSpec.describe "User can update blog post" do
 
   it "unsuccessfully" do
     create_user_and_login
-    post = create(:post, title: "First post", content: "This is the content of the fist post.")
+    post = create(:post, title: "First post", content: "This is the content of the first post.")
     visit edit_blog_post_path(post)
     fill_in "Titel", with: ""
     clear_trix_editor

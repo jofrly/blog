@@ -59,7 +59,6 @@ group :development, :test do
   gem "capybara"
   gem "factory_bot_rails"
   gem "selenium-webdriver"
-  gem "guard-rspec", require: false
 end
 
 group :development do

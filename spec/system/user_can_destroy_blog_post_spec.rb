@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "User can destroy blog post" do
   before do
-    driven_by(:rack_test)
+    driven_by(:selenium_headless)
   end
 
   it "successfully" do
@@ -10,8 +10,9 @@ RSpec.describe "User can destroy blog post" do
     post = create(:post, title: "First post", content: "This is the content of the first post.")
     visit edit_blog_post_path(post)
     click_on "Löschen"
-    expect(current_path).to eq(blog_posts_path)
+    accept_confirm
     expect(page).to_not have_text "First post"
     expect(page).to_not have_text "This is the content of the first post."
+    expect(current_path).to eq(blog_posts_path)
   end
 end

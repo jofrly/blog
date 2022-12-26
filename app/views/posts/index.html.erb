@@ -1,4 +1,6 @@
 <% @posts.each do |post| %>
-  <div><%= post.title %></div>
+  <div>
+    <%= link_to post.title, blog_post_path(post), class: "text-blue-500" %>
+  </div>
   <div><%= post.content_preview %></div>
 <% end %>

@@ -1,2 +1,2 @@
-<%= button_to "Löschen", blog_post_path(@post), method: :delete %>
+<%= button_to "Löschen", blog_post_path(@post), method: :delete, data: { turbo_confirm: "Bist Du Dir sicher?" } %>
 <%= render "posts/form", post: @post, submit_label: "Speichern" %>

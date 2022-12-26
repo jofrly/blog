@@ -5,6 +5,7 @@ de:
         username: Benutzername
       post:
         title: Titel
+        slug: Slug
         content: Inhalt
     errors:
       messages:

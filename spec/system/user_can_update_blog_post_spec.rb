@@ -10,9 +10,10 @@ RSpec.describe "User can update blog post" do
     post = create(:post, title: "First post", content: "This is the content of the first post.")
     visit edit_blog_post_path(post)
     fill_in "Titel", with: "Updated title"
+    fill_in "Slug", with: "updated-custom-slug"
     fill_in_trix_editor "Updated content"
     click_on "Speichern"
-    expect(current_path).to eq(blog_post_path(post))
+    expect(current_path).to eq(blog_post_path("updated-custom-slug"))
     expect(page).to have_text("Updated title")
     expect(page).to have_text("Updated content")
   end

@@ -16,6 +16,14 @@ RSpec.describe "Guest can see blog posts" do
     expect(page).to have_text "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur si..."
   end
 
+  it "can navigate to an individual post from the list" do
+    post = create(:post, title: "First post", content: "This is the content of the first post.")
+
+    visit blog_posts_path
+    click_on "First post"
+    expect(current_path).to eq(blog_post_path(post))
+  end
+
   it "individually" do
     post = create(:post, title: "First post", content: "This is the content of the first post.")
 

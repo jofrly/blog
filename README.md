@@ -9,6 +9,6 @@
     cp .env.example .env
     bundle install
     yarn
-    docker-compose up
+    bin/dev
     rails db:create
     rails db:migrate

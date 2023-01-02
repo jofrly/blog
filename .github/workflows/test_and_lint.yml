@@ -43,6 +43,8 @@ jobs:
       - name: Load schema to test database
         env:
           RAILS_ENV: test
+          SESSION_SCOPE: ""
+          DB_NAME: ""
           DB_USERNAME: blog
           DB_PASSWORD: blog
         run: |
@@ -52,13 +54,14 @@ jobs:
       - name: Run tests
         env:
           RAILS_ENV: test
+          SESSION_SCOPE: ""
+          DB_NAME: ""
           DB_USERNAME: blog
           DB_PASSWORD: blog
         run: |
-          bin/rails test:prepare
-          bin/rails test
+          bin/rails db:test:prepare
+          bin/rake
 
       - name: Run lint
         run: |
-          gem install rubocop
-          rubocop
+          bundle exec rubocop

@@ -60,9 +60,8 @@ jobs:
           DB_PASSWORD: blog
         run: |
           bin/rails db:test:prepare
-          bin/rails test
+          rspec
 
       - name: Run lint
         run: |
-          gem install rubocop
           rubocop

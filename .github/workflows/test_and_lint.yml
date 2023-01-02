@@ -43,6 +43,7 @@ jobs:
       - name: Load schema to test database
         env:
           RAILS_ENV: test
+          SESSION_SCOPE: ""
           DB_USERNAME: blog
           DB_PASSWORD: blog
         run: |
@@ -52,6 +53,7 @@ jobs:
       - name: Run tests
         env:
           RAILS_ENV: test
+          SESSION_SCOPE: ""
           DB_USERNAME: blog
           DB_PASSWORD: blog
         run: |

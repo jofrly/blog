@@ -64,4 +64,5 @@ jobs:
 
       - name: Run lint
         run: |
+          gem install rubocop
           rubocop

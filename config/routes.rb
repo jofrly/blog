@@ -10,6 +10,6 @@ Rails.application.routes.draw do
 
   # blog posts
   scope :blog, as: :blog do
-    resources :posts, only: %i[index new create show edit update destroy]
+    resources :posts
   end
 end

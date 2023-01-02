@@ -32,3 +32,6 @@ RSpec/ContextWording:
 
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
+
+Style/SymbolArray:
+  EnforcedStyle: brackets

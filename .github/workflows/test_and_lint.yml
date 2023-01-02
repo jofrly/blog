@@ -44,6 +44,7 @@ jobs:
         env:
           RAILS_ENV: test
           SESSION_SCOPE: ""
+          DB_NAME: ""
           DB_USERNAME: blog
           DB_PASSWORD: blog
         run: |
@@ -54,6 +55,7 @@ jobs:
         env:
           RAILS_ENV: test
           SESSION_SCOPE: ""
+          DB_NAME: ""
           DB_USERNAME: blog
           DB_PASSWORD: blog
         run: |

@@ -60,7 +60,7 @@ jobs:
           DB_PASSWORD: blog
         run: |
           bin/rails db:test:prepare
-          rspec
+          bin/rake
 
       - name: Run lint
         run: |

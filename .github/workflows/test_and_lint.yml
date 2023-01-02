@@ -64,4 +64,4 @@ jobs:
 
       - name: Run lint
         run: |
-          bundle exec rubocop
+          bin/bundle exec rubocop

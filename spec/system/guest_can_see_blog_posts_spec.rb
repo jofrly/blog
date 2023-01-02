@@ -42,6 +42,6 @@ RSpec.describe 'Guest can see blog posts' do
     expect(page).to have_text 'First post'
     expect(page).to have_text 'This is the content of the first post.'
     expect(page).to have_title 'First post'
-    expect(page).to have_meta "description", "This is the content of the first post."
+    expect(page).to have_meta 'description', 'This is the content of the first post.'
   end
 end

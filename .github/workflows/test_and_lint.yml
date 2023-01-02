@@ -59,7 +59,7 @@ jobs:
           DB_USERNAME: blog
           DB_PASSWORD: blog
         run: |
-          bin/rails test:prepare
+          bin/rails db:test:prepare
           bin/rails test
 
       - name: Run lint

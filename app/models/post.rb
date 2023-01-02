@@ -3,9 +3,12 @@ class Post < ApplicationRecord
 
   belongs_to :user
 
-  validates :title, :content, :slug, presence: true
-
-  before_validation { PostSlug.new(self).ensure_presence }
+  validates :title, presence: true
+  validates :content, presence: true
+  validates :slug,
+            presence: true,
+            uniqueness: true,
+            slug: true
 
   def content_preview
     content.to_plain_text.truncate(350)

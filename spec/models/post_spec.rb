@@ -18,27 +18,34 @@ RSpec.describe Post do
   end
 
   context "slug" do
-    it "gets generated automatically by the title" do
-      post = create(:post, title: "Just some test title", slug: "")
-      expect(post.slug).to eq("just-some-test-title")
+    it "is required" do
+      post = build(:post, slug: nil)
+      expect(post.valid?).to be_falsey
+      expect(post.errors.full_messages.first).to eq("Slug muss ausgefüllt werden")
     end
 
-    it "gets generated uniquely" do
-      first_post = create(:post, title: "Just some test title")
-      expect(first_post.slug).to eq("just-some-test-title")
-
-      second_post = create(:post, title: "Just some test title")
-      expect(second_post.slug).to match("just-some-test-title-")
+    it "is unique" do
+      create(:post, slug: "slug")
+      post = build(:post, slug: "slug")
+      expect(post.valid?).to be_falsey
+      expect(post.errors.full_messages.first).to eq("Slug ist bereits vergeben")
     end
 
-    it "can be set manually" do
-      post = create(:post, slug: "a-manually-set-slug")
-      expect(post.slug).to eq("a-manually-set-slug")
+    it "cannot be in invalid format with spaces" do
+      post = build(:post, slug: "a b c")
+      expect(post.valid?).to be_falsey
+      expect(post.errors.full_messages.first).to eq("Slug ist nicht gültig")
     end
 
-    it "gets parameterized when set manually" do
-      post = create(:post, slug: "a manually Set slug")
-      expect(post.slug).to eq("a-manually-set-slug")
+    it "cannot be in invalid format with special characters" do
+      post = build(:post, slug: "test-@-title")
+      expect(post.valid?).to be_falsey
+      expect(post.errors.full_messages.first).to eq("Slug ist nicht gültig")
+    end
+
+    it "can be in valid format" do
+      post = build(:post, slug: "test-title")
+      expect(post.valid?).to be_truthy
     end
   end
 

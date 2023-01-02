@@ -14,9 +14,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Current.user.posts.new(post_params)
+    result = PostInteractor::Create.call(
+      user: Current.user,
+      post_params: post_params
+    )
+    @post = result.post
 
-    if @post.save
+    if result.success?
       redirect_to blog_post_path(@post)
     else
       render :new, status: :unprocessable_entity

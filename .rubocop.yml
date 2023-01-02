@@ -1,0 +1,33 @@
+AllCops:
+  NewCops: enable
+  Exclude:
+    - db/schema.rb
+    - bin/**/*
+
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-rspec
+
+Metrics/MethodLength:
+  Exclude:
+    - db/migrate/*
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Exclude:
+    - db/migrate/*
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/ContextWording:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never

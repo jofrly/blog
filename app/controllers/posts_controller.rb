@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :require_login, except: [:index, :show]
+  before_action :require_login, except: %i[index show]
 
   def index
     @posts = Post.all.with_rich_text_content
@@ -11,6 +11,10 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+  end
+
+  def edit
+    @post = Post.find_by(slug: params[:id])
   end
 
   def create
@@ -25,10 +29,6 @@ class PostsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def edit
-    @post = Post.find_by(slug: params[:id])
   end
 
   def update

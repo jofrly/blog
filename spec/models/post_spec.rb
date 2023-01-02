@@ -1,59 +1,69 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe Post do
-  context "title" do
-    it "is required" do
+  context 'title' do
+    it 'is required' do
       post = build(:post, title: nil)
-      expect(post.valid?).to be_falsey
-      expect(post.errors.full_messages.first).to eq("Titel muss ausgefüllt werden")
+      expect(post).not_to be_valid
+      expect(post.errors.full_messages.first).to eq('Titel muss ausgefüllt werden')
     end
   end
 
-  context "content" do
-    it "is required" do
+  context 'content' do
+    it 'is required' do
       post = build(:post, content: nil)
-      expect(post.valid?).to be_falsey
-      expect(post.errors.full_messages.first).to eq("Inhalt muss ausgefüllt werden")
+      expect(post).not_to be_valid
+      expect(post.errors.full_messages.first).to eq('Inhalt muss ausgefüllt werden')
     end
   end
 
-  context "slug" do
-    it "is required" do
+  context 'slug' do
+    it 'is required' do
       post = build(:post, slug: nil)
-      expect(post.valid?).to be_falsey
-      expect(post.errors.full_messages.first).to eq("Slug muss ausgefüllt werden")
+      expect(post).not_to be_valid
+      expect(post.errors.full_messages.first).to eq('Slug muss ausgefüllt werden')
     end
 
-    it "is unique" do
-      create(:post, slug: "slug")
-      post = build(:post, slug: "slug")
-      expect(post.valid?).to be_falsey
-      expect(post.errors.full_messages.first).to eq("Slug ist bereits vergeben")
+    it 'is unique' do
+      create(:post, slug: 'slug')
+      post = build(:post, slug: 'slug')
+      expect(post).not_to be_valid
+      expect(post.errors.full_messages.first).to eq('Slug ist bereits vergeben')
     end
 
-    it "cannot be in invalid format with spaces" do
-      post = build(:post, slug: "a b c")
-      expect(post.valid?).to be_falsey
-      expect(post.errors.full_messages.first).to eq("Slug ist nicht gültig")
+    it 'cannot be in invalid format with spaces' do
+      post = build(:post, slug: 'a b c')
+      expect(post).not_to be_valid
+      expect(post.errors.full_messages.first).to eq('Slug ist nicht gültig')
     end
 
-    it "cannot be in invalid format with special characters" do
-      post = build(:post, slug: "test-@-title")
-      expect(post.valid?).to be_falsey
-      expect(post.errors.full_messages.first).to eq("Slug ist nicht gültig")
+    it 'cannot be in invalid format with special characters' do
+      post = build(:post, slug: 'test-@-title')
+      expect(post).not_to be_valid
+      expect(post.errors.full_messages.first).to eq('Slug ist nicht gültig')
     end
 
-    it "can be in valid format" do
-      post = build(:post, slug: "test-title")
-      expect(post.valid?).to be_truthy
+    it 'can be in valid format' do
+      post = build(:post, slug: 'test-title')
+      expect(post).to be_valid
     end
   end
 
-  context "#content_preview" do
-    it "truncates at 350 characters" do
-      post = build(:post, content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+  describe '#content_preview' do
+    it 'truncates at 350 characters' do
+      post = build(:post,
+                   content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ' \
+                            'incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ' \
+                            'exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure ' \
+                            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ' \
+                            'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt ' \
+                            'mollit anim id est laborum.')
 
-      expect(post.content_preview).to eq("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur si...")
+      expect(post.content_preview).to eq('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ' \
+                                         'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ' \
+                                         'veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea ' \
+                                         'commodo consequat. Duis aute irure dolor in reprehenderit in voluptate ' \
+                                         'velit esse cillum dolore eu fugiat nulla pariatur. Excepteur si...')
     end
   end
 end

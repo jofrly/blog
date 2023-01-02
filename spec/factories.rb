@@ -2,14 +2,14 @@ FactoryBot.use_parent_strategy = false
 
 FactoryBot.define do
   factory :user do
-    sequence(:username){|n| "admin#{n}" }
-    password { "secretpassword" }
+    sequence(:username) { |n| "admin#{n}" }
+    password { 'secretpassword' }
   end
 
   factory :post do
     user
-    title { "title" }
-    content { "content" }
-    sequence(:slug){|n| "slug#{n}" }
+    title { 'title' }
+    content { 'content' }
+    sequence(:slug) { |n| "slug#{n}" }
   end
 end

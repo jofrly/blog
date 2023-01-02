@@ -1,6 +1,5 @@
 class SessionController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
     @user = User.with_username(session_params[:username])

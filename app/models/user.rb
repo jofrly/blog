@@ -4,9 +4,9 @@ class User < ApplicationRecord
   validates :username, presence: true
   validates :username, uniqueness: true
 
-  has_many :posts
+  has_many :posts, dependent: :destroy
 
   def self.with_username(username)
-    find_by("lower(username) = ?", username.downcase)
+    find_by('lower(username) = ?', username.downcase)
   end
 end

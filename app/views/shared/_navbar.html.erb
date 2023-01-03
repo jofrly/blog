@@ -3,7 +3,7 @@
     <%= render "shared/navbar_link", label: "Start", path: root_path %>
     <%= render "shared/navbar_link", label: "Blog", path: blog_posts_path %>
 
-    <% if Current.user.present? %>
+    <% if Current.user.authenticated? %>
       <%= render "shared/navbar_link", label: "Abmelden", path: logout_path, classes: "ml-auto" %>
     <% end %>
   </div>

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :require_login, except: [:index, :show]
+  before_action :require_authentication, except: [:index, :show]
 
   def index
     @posts = Post.all.with_rich_text_content

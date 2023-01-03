@@ -5,17 +5,16 @@ class ApplicationController < ActionController::Base
   private
 
   def set_current
-    return unless session[:user_id]
-
-    Current.user = User.find(session[:user_id])
+    Current.user = User.find(session[:user_id]) if session[:user_id]
+    Current.user ||= Guest.new
   end
 
   def set_locale
     I18n.locale = :de
   end
 
-  def require_login
-    return if Current.user.present?
+  def require_authentication
+    return if Current.user.authenticated?
 
     redirect_to root_path
   end

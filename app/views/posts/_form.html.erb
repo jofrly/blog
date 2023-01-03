@@ -1,14 +1,16 @@
-<%= render "shared/errors", object: post %>
+<div data-controller="form">
+  <%= form_with model: [:blog, post], data: { form_target: "form" }, class: "pt-16 pb-20 text-lg prose max-w-[660px] mx-auto" do |f| %>
+    <%= render "shared/errors", object: post %>
 
-<%= form_with model: [:blog, post] do |f| %>
-  <%= f.label :title, "Titel" %>
-  <%= f.text_field :title %>
+    <%= f.text_field :slug, placeholder: "Slug (optional)", class: "text-slate-900 font-sm bg-transparent outline-0 w-full" %>
 
-  <%= f.label :slug, "Slug" %>
-  <%= f.text_field :slug %>
+    <%= f.text_field :title, placeholder: "Titel", class: "text-4xl text-slate-900 font-medium mb-4 bg-transparent w-full outline-0 mb-8" %>
 
-  <%= f.label :content, "Inhalt" %>
-  <%= f.rich_text_area :content %>
+    <%= f.rich_text_area :content, placeholder: "Inhalt", class: "trix-content text-slate-700 p-0 border-0 outline-0" %>
+  <% end %>
 
-  <%= f.submit submit_label %>
-<% end %>
+  <div class="fixed bottom-0 left-0 right-0 h-16 bg-slate-100 border-t border-slate-500 flex px-6 items-center gap-6">
+    <%= yield %>
+    <button type="button" data-action="click->form#submit"><%= submit_label %></button>
+  </div>
+</div>

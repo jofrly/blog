@@ -10,7 +10,7 @@ RSpec.describe 'User can update blog post' do
     post = create(:post, title: 'First post', content: 'This is the content of the first post.')
     visit edit_blog_post_path(post)
     fill_in 'Titel', with: 'Updated title'
-    fill_in 'Slug', with: 'updated-custom-slug'
+    fill_in 'Slug (optional)', with: 'updated-custom-slug'
     fill_in_trix_editor 'Updated content'
     click_on 'Speichern'
     expect(page).to have_current_path(blog_post_path('updated-custom-slug'), ignore_query: true)

@@ -24,6 +24,6 @@ RSpec.describe 'User can create blog post' do
     expect(Post.first).to be_nil
     expect(page).to have_text('Titel muss ausgefüllt werden')
     expect(page).to have_text('Inhalt muss ausgefüllt werden')
-    expect(page).to have_text('Slug muss ausgefüllt werden')
+    expect(page).not_to have_text('Slug muss ausgefüllt werden')
   end
 end

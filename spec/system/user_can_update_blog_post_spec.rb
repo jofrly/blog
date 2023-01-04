@@ -9,12 +9,12 @@ RSpec.describe 'User can update blog post' do
     create_user_and_login
     create(:post, title: 'First post', content: 'This is the content of the first post.')
     visit root_path
-    click_on 'First post'
-    click_on 'Bearbeiten'
+    click_link 'First post'
+    click_link 'Bearbeiten'
     fill_in 'Titel', with: 'Updated title'
     fill_in 'Slug (optional)', with: 'updated-custom-slug'
     fill_in_trix_editor 'Updated content'
-    click_on 'Speichern'
+    click_button 'Speichern'
     expect(page).to have_current_path(blog_post_path('updated-custom-slug'), ignore_query: true)
     expect(page).to have_text('Updated title')
     expect(page).to have_text('Updated content')
@@ -24,11 +24,11 @@ RSpec.describe 'User can update blog post' do
     create_user_and_login
     post = create(:post, title: 'First post', content: 'This is the content of the first post.')
     visit root_path
-    click_on 'First post'
-    click_on 'Bearbeiten'
+    click_link 'First post'
+    click_link 'Bearbeiten'
     fill_in 'Titel', with: ''
     clear_trix_editor
-    click_on 'Speichern'
+    click_button 'Speichern'
     expect(page).to have_current_path(edit_blog_post_path(post), ignore_query: true)
     expect(page).to have_text('Titel muss ausgefüllt werden')
     expect(page).to have_text('Inhalt muss ausgefüllt werden')
@@ -38,9 +38,9 @@ RSpec.describe 'User can update blog post' do
     create_user_and_login
     post = create(:post, title: 'First post', content: 'This is the content of the first post.')
     visit root_path
-    click_on 'First post'
-    click_on 'Bearbeiten'
-    click_on 'Abbrechen'
+    click_link 'First post'
+    click_link 'Bearbeiten'
+    click_link 'Abbrechen'
     expect(page).to have_current_path(blog_post_path(post), ignore_query: true)
   end
 end

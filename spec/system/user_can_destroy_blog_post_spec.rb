@@ -9,9 +9,9 @@ RSpec.describe 'User can destroy blog post' do
     create_user_and_login
     create(:post, title: 'First post', content: 'This is the content of the first post.')
     visit root_path
-    click_on 'First post'
-    click_on 'Bearbeiten'
-    click_on 'Löschen'
+    click_link 'First post'
+    click_link 'Bearbeiten'
+    click_button 'Löschen'
     accept_confirm
     expect(page).not_to have_text 'First post'
     expect(page).not_to have_text 'This is the content of the first post.'

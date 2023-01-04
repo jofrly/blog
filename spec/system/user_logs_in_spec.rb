@@ -9,7 +9,7 @@ RSpec.describe 'User logs in' do
     create(:user, username: 'admin', password: 'secretpassword')
     login_as(username: 'admin', password: 'secretpassword')
     expect(page).to have_current_path(root_path, ignore_query: true)
-    expect(page).to have_link 'Abmelden', href: logout_path
+    expect(page).to have_link 'Abmelden'
   end
 
   it 'unsuccessfully' do

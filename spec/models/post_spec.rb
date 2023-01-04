@@ -61,19 +61,13 @@ RSpec.describe Post do
 
   describe '#content_preview' do
     it 'truncates at 350 characters' do
-      post = build(:post,
-                   content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ' \
-                            'incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ' \
-                            'exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure ' \
-                            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ' \
-                            'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt ' \
-                            'mollit anim id est laborum.')
+      post = build(:post, :with_long_content)
+      expect(post.content_preview).to eq(post.content.to_plain_text.truncate(350))
+    end
 
-      expect(post.content_preview).to eq('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ' \
-                                         'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ' \
-                                         'veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea ' \
-                                         'commodo consequat. Duis aute irure dolor in reprehenderit in voluptate ' \
-                                         'velit esse cillum dolore eu fugiat nulla pariatur. Excepteur si...')
+    it 'strips new lines' do
+      post = build(:post, :with_new_lines_in_content)
+      expect(post.content_preview).to eq('a b c')
     end
   end
 end

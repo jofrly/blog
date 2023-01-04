@@ -1,0 +1,6 @@
+<%= link_to blog_post_path(post), class: "shadow-lg shadow-slate-200 hover:shadow-slate-300 transition-all border border-slate-200 rounded-md py-8 px-6 text-center" do %>
+  <h1 class="text-3xl text-slate-700 font-medium mb-2"><%= post.title %></h1>
+  <p class="text-sm text-slate-500 mt-0 mb-6">am <%= post.created_at.strftime('%d.%m.%Y') %></p>
+  <div class="text-slate-700 text-lg"><%= post.content_preview %></div>
+  <button class="mt-4">Mehr lesen</button>
+<% end %>

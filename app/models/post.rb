@@ -11,12 +11,16 @@ class Post < ApplicationRecord
             slug: true,
             if: proc { title.present? }
 
+  def self.recent_first
+    order(created_at: :desc)
+  end
+
   def self.including_content
     includes([:rich_text_content])
   end
 
   def content_preview
-    content.to_plain_text.truncate(350).delete("\n")
+    content.to_plain_text.truncate(350).gsub("\n", ' ')
   end
 
   def to_param

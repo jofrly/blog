@@ -25,6 +25,11 @@
   font-size: 1.75rem !important;
   margin-bottom: 1.5rem;
   margin-top: 2rem;
+  @apply text-slate-700;
+}
+
+.trix-content h1 a {
+  @apply text-slate-700;
 }
 
 trix-toolbar {

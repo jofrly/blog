@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :require_authentication, except: [:index, :show]
 
   def index
-    @posts = Post.all.including_content
+    @posts = Post.recent_first.including_content
   end
 
   def show

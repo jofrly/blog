@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :require_authentication, except: [:index, :show]
 
   def index
-    @posts = Post.all.with_rich_text_content
+    @posts = Post.all.including_content
   end
 
   def show

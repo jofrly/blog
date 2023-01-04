@@ -10,6 +10,10 @@ require:
   - rubocop-performance
   - rubocop-rspec
 
+Metrics/BlockLength:
+  Exclude:
+    - config/environments/*
+
 Metrics/MethodLength:
   Exclude:
     - db/migrate/*

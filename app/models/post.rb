@@ -11,6 +11,10 @@ class Post < ApplicationRecord
             slug: true,
             if: proc { title.present? }
 
+  def self.including_content
+    includes([:rich_text_content])
+  end
+
   def content_preview
     content.to_plain_text.truncate(350).delete("\n")
   end

@@ -27,6 +27,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # gem "sassc-rails"
 
 group :development, :test do
+  gem 'bullet', '~> 7.0'
   gem 'capybara'
   gem 'debug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'

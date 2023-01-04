@@ -15,7 +15,7 @@ RSpec.describe 'Guest can see blog posts' do
                            'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt ' \
                            'mollit anim id est laborum.')
 
-    visit blog_posts_path
+    visit root_path
     expect(page).to have_text 'First post'
     expect(page).to have_text 'This is the content of the first post.'
     expect(page).to have_text 'Second post'
@@ -29,7 +29,7 @@ RSpec.describe 'Guest can see blog posts' do
   it 'can navigate to an individual post from the list' do
     post = create(:post, title: 'First post', content: 'This is the content of the first post.')
 
-    visit blog_posts_path
+    visit root_path
     click_on 'First post'
     expect(page).to have_current_path(blog_post_path(post), ignore_query: true)
   end

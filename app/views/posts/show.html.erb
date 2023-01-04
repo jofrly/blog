@@ -2,6 +2,12 @@
 <%= content_for(:meta_description, @post.content_preview) %>
 
 <article class="pt-16 pb-12 text-lg prose max-w-[660px] mx-auto">
+  <% if Current.user.authenticated? %>
+    <div class="mb-8">
+      <%= link_to "Bearbeiten", edit_blog_post_path(@post), class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
   <h1 class="text-4xl text-slate-700 font-medium mb-2"><%= @post.title %></h1>
   <p class="text-sm text-slate-500 mt-0 mb-8">am <%= @post.created_at.strftime('%d.%m.%Y') %></p>
   <%= @post.content %>

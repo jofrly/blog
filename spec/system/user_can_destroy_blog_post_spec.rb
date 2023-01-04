@@ -13,6 +13,6 @@ RSpec.describe 'User can destroy blog post' do
     accept_confirm
     expect(page).not_to have_text 'First post'
     expect(page).not_to have_text 'This is the content of the first post.'
-    expect(page).to have_current_path(blog_posts_path, ignore_query: true)
+    expect(page).to have_current_path(root_path, ignore_query: true)
   end
 end

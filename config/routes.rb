@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'pages#index'
+  root 'posts#index'
 
   # session
   scope ENV.fetch('SESSION_SCOPE') do
@@ -10,6 +10,6 @@ Rails.application.routes.draw do
 
   # blog posts
   scope :blog, as: :blog do
-    resources :posts
+    resources :posts, except: [:index]
   end
 end

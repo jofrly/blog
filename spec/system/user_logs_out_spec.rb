@@ -8,7 +8,8 @@ RSpec.describe 'User logs out' do
   it 'successfully' do
     create_user_and_login
 
-    visit logout_path
+    click_on 'Abmelden'
+
     expect(page).not_to have_link 'Abmelden', href: logout_path
   end
 end

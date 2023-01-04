@@ -7,8 +7,10 @@ RSpec.describe 'User can update blog post' do
 
   it 'successfully' do
     create_user_and_login
-    post = create(:post, title: 'First post', content: 'This is the content of the first post.')
-    visit edit_blog_post_path(post)
+    create(:post, title: 'First post', content: 'This is the content of the first post.')
+    visit root_path
+    click_on 'First post'
+    click_on 'Bearbeiten'
     fill_in 'Titel', with: 'Updated title'
     fill_in 'Slug (optional)', with: 'updated-custom-slug'
     fill_in_trix_editor 'Updated content'
@@ -21,12 +23,24 @@ RSpec.describe 'User can update blog post' do
   it 'unsuccessfully' do
     create_user_and_login
     post = create(:post, title: 'First post', content: 'This is the content of the first post.')
-    visit edit_blog_post_path(post)
+    visit root_path
+    click_on 'First post'
+    click_on 'Bearbeiten'
     fill_in 'Titel', with: ''
     clear_trix_editor
     click_on 'Speichern'
     expect(page).to have_current_path(edit_blog_post_path(post), ignore_query: true)
     expect(page).to have_text('Titel muss ausgefüllt werden')
     expect(page).to have_text('Inhalt muss ausgefüllt werden')
+  end
+
+  it 'can cancel' do
+    create_user_and_login
+    post = create(:post, title: 'First post', content: 'This is the content of the first post.')
+    visit root_path
+    click_on 'First post'
+    click_on 'Bearbeiten'
+    click_on 'Abbrechen'
+    expect(page).to have_current_path(blog_post_path(post), ignore_query: true)
   end
 end

@@ -7,7 +7,8 @@ RSpec.describe 'User can create blog post' do
 
   it 'successfully' do
     create_user_and_login
-    visit new_blog_post_path
+    visit root_path
+    click_on 'Erstellen'
     fill_in 'Titel', with: 'Post title'
     fill_in_trix_editor 'Post content'
     click_on 'Erstellen'
@@ -19,11 +20,21 @@ RSpec.describe 'User can create blog post' do
 
   it 'unsuccessfully' do
     create_user_and_login
-    visit new_blog_post_path
+    visit root_path
+    click_on 'Erstellen'
     click_on 'Erstellen'
     expect(Post.first).to be_nil
     expect(page).to have_text('Titel muss ausgefüllt werden')
     expect(page).to have_text('Inhalt muss ausgefüllt werden')
     expect(page).not_to have_text('Slug muss ausgefüllt werden')
+  end
+
+  it 'can cancel' do
+    create_user_and_login
+    visit root_path
+    click_on 'Erstellen'
+    click_on 'Abbrechen'
+    expect(page).to have_current_path(root_path, ignore_query: true)
+    expect(Post.first).to be_nil
   end
 end

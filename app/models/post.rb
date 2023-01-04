@@ -20,7 +20,7 @@ class Post < ApplicationRecord
   end
 
   def content_preview
-    content.to_plain_text.truncate(350).gsub("\n", ' ')
+    content.to_plain_text.truncate(350).tr("\n", ' ')
   end
 
   def to_param

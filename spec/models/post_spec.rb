@@ -52,7 +52,7 @@ RSpec.describe Post do
   describe '.recent_first' do
     it 'returns the posts ordered by the most recent first' do
       oldest_post_id = create(:post, created_at: 3.days.ago).id
-      newest_post_id = create(:post, created_at: 1.days.ago).id
+      newest_post_id = create(:post, created_at: 1.day.ago).id
       middle_post_id = create(:post, created_at: 2.days.ago).id
 
       expect(described_class.recent_first.pluck(:id)).to eq([newest_post_id, middle_post_id, oldest_post_id])
